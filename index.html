@@ -7,483 +7,1022 @@
 <title>Timeline AMSO 2026</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-:root {
-    --blue: #0b3d91;
-    --blue2: #146cff;
-    --navy: #071f49;
-    --gold: #f5b800;
-    --bg: #f4f7fb;
-    --text: #182235;
-    --muted: #718096;
-    --white: #ffffff;
-    --border: #e4eaf2;
+:root{
+    --bg:#080514;
+    --bg2:#110823;
+    --purple:#7c3aed;
+    --violet:#a855f7;
+    --cyan:#67e8f9;
+    --pink:#e879f9;
+    --white:#f8f7ff;
+    --muted:#aaa3c2;
+    --line:rgba(168,85,247,.25);
 }
 
-body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
+/* =========================
+   BODY
+========================= */
+
+body{
+    font-family:"Segoe UI",Arial,sans-serif;
+    color:var(--white);
+    background:
+        radial-gradient(circle at 20% 10%,rgba(124,58,237,.25),transparent 28%),
+        radial-gradient(circle at 80% 20%,rgba(232,121,249,.12),transparent 25%),
+        radial-gradient(circle at 50% 80%,rgba(103,232,249,.08),transparent 30%),
+        var(--bg);
+
+    min-height:100vh;
+    overflow-x:hidden;
 }
+
+
+/* =========================
+   STARS
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background-image:
+        radial-gradient(1px 1px at 10% 20%,white,transparent),
+        radial-gradient(1px 1px at 20% 70%,white,transparent),
+        radial-gradient(1px 1px at 30% 40%,white,transparent),
+        radial-gradient(1px 1px at 40% 80%,white,transparent),
+        radial-gradient(1px 1px at 50% 25%,white,transparent),
+        radial-gradient(1px 1px at 60% 65%,white,transparent),
+        radial-gradient(1px 1px at 70% 15%,white,transparent),
+        radial-gradient(1px 1px at 80% 55%,white,transparent),
+        radial-gradient(1px 1px at 90% 30%,white,transparent);
+
+    background-size:320px 320px;
+
+    opacity:.55;
+    pointer-events:none;
+    z-index:0;
+
+    animation:stars 30s linear infinite;
+}
+
+@keyframes stars{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-320px);
+    }
+}
+
 
 /* =========================
    HERO
 ========================= */
 
-.hero {
+.hero{
+    min-height:560px;
+    position:relative;
+    overflow:hidden;
+
     background:
-        radial-gradient(circle at 10% 20%, rgba(255,255,255,.08), transparent 25%),
-        radial-gradient(circle at 90% 80%, rgba(245,184,0,.12), transparent 25%),
-        linear-gradient(135deg, #061d45, #0b3d91);
-
-    color: white;
-    padding: 55px 20px 45px;
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(124,58,237,.35),
+            transparent 45%
+        ),
+        linear-gradient(
+            180deg,
+            #05030d,
+            #0c061b 65%,
+            #16072b
+        );
 }
 
-.hero-inner {
-    max-width: 1150px;
-    margin: auto;
+.hero-inner{
+    max-width:1200px;
+    margin:auto;
+
+    min-height:560px;
+
+    position:relative;
+    z-index:2;
+
+    padding:45px 25px;
 }
 
-.hero-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-}
-
-.logo-area {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.logo-placeholder {
-    width: 58px;
-    height: 58px;
-    border-radius: 15px;
-    background: rgba(255,255,255,.12);
-    border: 1px solid rgba(255,255,255,.2);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-weight: 900;
-    font-size: 14px;
-}
-
-.logo-text small {
-    display: block;
-    font-size: 11px;
-    opacity: .65;
-    letter-spacing: 1.5px;
-}
-
-.logo-text strong {
-    font-size: 18px;
-}
-
-.hero h1 {
-    font-size: clamp(38px, 6vw, 68px);
-    line-height: .95;
-    letter-spacing: -3px;
-    margin-top: 45px;
-}
-
-.hero h1 span {
-    color: var(--gold);
-}
-
-.hero-desc {
-    margin-top: 17px;
-    color: rgba(255,255,255,.75);
-    max-width: 650px;
-    font-size: 15px;
-}
-
-.year {
-    display: inline-block;
-    margin-top: 25px;
-    padding: 8px 15px;
-    border-radius: 30px;
-    background: rgba(255,255,255,.1);
-    border: 1px solid rgba(255,255,255,.15);
-    font-size: 13px;
-}
 
 /* =========================
-   MAIN
+   NAV
 ========================= */
 
-.container {
-    max-width: 1150px;
-    margin: auto;
-    padding: 35px 20px 80px;
+.nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.brand-icon{
+    width:44px;
+    height:44px;
+
+    border-radius:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--violet)
+        );
+
+    box-shadow:
+        0 0 25px rgba(168,85,247,.4);
+
+    font-size:20px;
+}
+
+.brand-text small{
+    display:block;
+    color:#8e87a7;
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+.brand-text strong{
+    font-size:14px;
+}
+
+.year{
+    padding:8px 15px;
+
+    border:1px solid var(--line);
+    border-radius:30px;
+
+    color:var(--cyan);
+
+    background:rgba(124,58,237,.08);
+
+    font-size:11px;
+    font-weight:700;
+}
+
 
 /* =========================
-   NEXT EVENT
+   HERO CONTENT
 ========================= */
 
-.next-event {
-    margin-top: -65px;
-    position: relative;
-    z-index: 5;
-
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 22px;
-
-    padding: 25px;
-
-    box-shadow: 0 20px 50px rgba(20,45,80,.10);
-
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 25px;
+.hero-content{
+    margin-top:100px;
+    max-width:700px;
 }
 
-.next-label {
-    color: var(--blue2);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
+.kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    color:var(--cyan);
+
+    font-size:11px;
+    font-weight:800;
+
+    letter-spacing:2px;
+    text-transform:uppercase;
 }
 
-.next-title {
-    font-size: 23px;
-    font-weight: 800;
-    color: var(--navy);
+.kicker span{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--cyan);
+
+    box-shadow:
+        0 0 15px var(--cyan);
 }
 
-.next-date {
-    color: var(--muted);
-    margin-top: 6px;
-    font-size: 14px;
+.hero h1{
+    margin-top:20px;
+
+    font-size:clamp(45px,8vw,92px);
+
+    line-height:.88;
+
+    letter-spacing:-5px;
+
+    font-weight:900;
 }
 
-.countdown {
-    display: flex;
-    gap: 8px;
+.hero h1 span{
+    display:block;
+
+    background:
+        linear-gradient(
+            90deg,
+            #c084fc,
+            #8b5cf6,
+            #67e8f9
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
 }
 
-.count-box {
-    min-width: 65px;
-    padding: 10px;
-    background: var(--bg);
-    border-radius: 12px;
-    text-align: center;
+.hero-description{
+    margin-top:25px;
+
+    max-width:550px;
+
+    color:var(--muted);
+
+    font-size:14px;
+    line-height:1.7;
 }
 
-.count-box strong {
-    display: block;
-    font-size: 22px;
-    color: var(--blue);
-}
-
-.count-box span {
-    font-size: 9px;
-    text-transform: uppercase;
-    color: var(--muted);
-}
 
 /* =========================
-   PROGRESS
+   ORBIT
 ========================= */
 
-.progress-section {
-    margin-top: 35px;
+.orbit{
+    position:absolute;
+
+    width:600px;
+    height:600px;
+
+    right:-130px;
+    top:40px;
+
+    border:1px solid rgba(168,85,247,.18);
+
+    border-radius:50%;
+
+    transform:rotate(-20deg);
 }
 
-.section-title {
-    font-size: 22px;
-    color: var(--navy);
-    margin-bottom: 15px;
+.orbit::before{
+    content:"";
+
+    position:absolute;
+
+    inset:65px;
+
+    border:1px solid rgba(103,232,249,.12);
+
+    border-radius:50%;
 }
 
-.progress-bar {
-    width: 100%;
-    height: 10px;
-    border-radius: 20px;
-    background: #dfe6f0;
-    overflow: hidden;
+.orbit::after{
+    content:"";
+
+    position:absolute;
+
+    width:16px;
+    height:16px;
+
+    background:var(--cyan);
+
+    border-radius:50%;
+
+    top:70px;
+    left:70px;
+
+    box-shadow:
+        0 0 30px var(--cyan);
+
+    animation:orbit 12s linear infinite;
 }
 
-.progress-fill {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, var(--blue2), var(--gold));
-    border-radius: 20px;
-    transition: width 1s ease;
+@keyframes orbit{
+    from{
+        transform:rotate(0deg) translateX(230px) rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg) translateX(230px) rotate(-360deg);
+    }
 }
 
-.progress-info {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-    color: var(--muted);
-    font-size: 12px;
+
+/* =========================
+   ASTRONAUT
+========================= */
+
+.astronaut{
+    position:absolute;
+
+    right:110px;
+    top:150px;
+
+    width:180px;
+    height:220px;
+
+    animation:float 4s ease-in-out infinite;
+
+    filter:
+        drop-shadow(
+            0 0 30px rgba(168,85,247,.3)
+        );
 }
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0) rotate(4deg);
+    }
+
+    50%{
+        transform:translateY(-18px) rotate(-3deg);
+    }
+}
+
+.helmet{
+    position:absolute;
+
+    width:82px;
+    height:82px;
+
+    left:50px;
+    top:0;
+
+    background:#ddd9e9;
+
+    border-radius:50%;
+
+    border:7px solid #aaa3bb;
+
+    box-shadow:
+        inset 0 0 0 10px #292235,
+        0 0 20px rgba(255,255,255,.15);
+}
+
+.visor{
+    position:absolute;
+
+    width:48px;
+    height:35px;
+
+    left:10px;
+    top:17px;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #182044,
+            #513d87
+        );
+
+    box-shadow:
+        inset 0 0 15px rgba(103,232,249,.3);
+}
+
+.body{
+    position:absolute;
+
+    width:88px;
+    height:105px;
+
+    left:47px;
+    top:73px;
+
+    background:#d7d3df;
+
+    border-radius:30px 30px 20px 20px;
+
+    border:5px solid #aaa3bb;
+}
+
+.control{
+    position:absolute;
+
+    width:35px;
+    height:30px;
+
+    left:25px;
+    top:28px;
+
+    border-radius:7px;
+
+    background:#292235;
+
+    border:2px solid #716a83;
+}
+
+.arm{
+    position:absolute;
+
+    width:28px;
+    height:80px;
+
+    background:#c8c3d2;
+
+    border-radius:20px;
+
+    top:82px;
+}
+
+.arm.left{
+    left:22px;
+    transform:rotate(25deg);
+}
+
+.arm.right{
+    right:22px;
+    transform:rotate(-30deg);
+}
+
+.leg{
+    position:absolute;
+
+    width:30px;
+    height:65px;
+
+    background:#c8c3d2;
+
+    border-radius:20px;
+
+    top:160px;
+}
+
+.leg.left{
+    left:55px;
+    transform:rotate(8deg);
+}
+
+.leg.right{
+    right:55px;
+    transform:rotate(-8deg);
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.container{
+    position:relative;
+    z-index:3;
+
+    max-width:1150px;
+
+    margin:-45px auto 0;
+
+    padding:0 20px 80px;
+}
+
+
+/* =========================
+   NEXT MISSION
+========================= */
+
+.next{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(31,16,61,.95),
+            rgba(15,9,31,.98)
+        );
+
+    border:1px solid rgba(168,85,247,.28);
+
+    border-radius:24px;
+
+    padding:25px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.35);
+
+    display:grid;
+
+    grid-template-columns:1fr auto;
+
+    gap:25px;
+
+    align-items:center;
+}
+
+.next-label{
+    color:var(--cyan);
+
+    font-size:10px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+}
+
+.next-title{
+    font-size:21px;
+
+    font-weight:800;
+
+    margin-top:8px;
+}
+
+.next-date{
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-top:5px;
+}
+
+.countdown{
+    display:flex;
+    gap:7px;
+}
+
+.count{
+    min-width:62px;
+
+    text-align:center;
+
+    padding:10px 8px;
+
+    border-radius:12px;
+
+    background:rgba(124,58,237,.12);
+
+    border:1px solid rgba(168,85,247,.15);
+}
+
+.count strong{
+    display:block;
+
+    font-size:21px;
+
+    color:#d8b4fe;
+}
+
+.count span{
+    font-size:8px;
+
+    color:#8f88a7;
+
+    text-transform:uppercase;
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    margin-top:42px;
+}
+
+.section-head{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+    margin-bottom:18px;
+}
+
+.section-head h2{
+    font-size:22px;
+}
+
+.section-head p{
+    color:var(--muted);
+
+    font-size:11px;
+}
+
 
 /* =========================
    PHASES
 ========================= */
 
-.phase-section {
-    margin-top: 45px;
+.phases{
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:12px;
 }
 
-.phases {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
+.phase{
+    position:relative;
+
+    padding:20px 16px;
+
+    min-height:125px;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(31,16,61,.95),
+            rgba(15,9,31,.95)
+        );
+
+    border:1px solid rgba(168,85,247,.18);
+
+    transition:.3s;
 }
 
-.phase {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 18px;
+.phase:hover{
+    transform:translateY(-6px);
 
-    cursor: pointer;
+    border-color:rgba(168,85,247,.5);
 
-    transition: .25s;
+    box-shadow:
+        0 15px 35px rgba(124,58,237,.15);
 }
 
-.phase:hover {
-    transform: translateY(-4px);
-    border-color: #b8cdf3;
-    box-shadow: 0 12px 25px rgba(20,45,80,.08);
+.phase::after{
+    content:"";
+
+    position:absolute;
+
+    width:80px;
+    height:80px;
+
+    border-radius:50%;
+
+    right:-35px;
+    bottom:-35px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(168,85,247,.35),
+            transparent 65%
+        );
 }
 
-.phase-number {
-    font-size: 11px;
-    font-weight: 800;
-    color: var(--blue2);
+.phase-number{
+    color:var(--cyan);
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    font-weight:800;
 }
 
-.phase h3 {
-    margin-top: 7px;
-    font-size: 16px;
+.phase h3{
+    margin-top:10px;
+
+    font-size:16px;
 }
 
-.phase p {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 4px;
+.phase p{
+    color:var(--muted);
+
+    font-size:10px;
+
+    margin-top:4px;
 }
+
 
 /* =========================
    FILTER
 ========================= */
 
-.timeline-header {
-    margin-top: 50px;
+.filters{
+    display:flex;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+    gap:7px;
+
+    flex-wrap:wrap;
 }
 
-.filters {
-    display: flex;
-    gap: 7px;
-    flex-wrap: wrap;
+.filter{
+    border:1px solid rgba(168,85,247,.2);
+
+    color:#aaa3c2;
+
+    background:#100820;
+
+    padding:7px 12px;
+
+    border-radius:30px;
+
+    font-size:10px;
+
+    cursor:pointer;
+
+    transition:.2s;
 }
 
-.filter {
-    border: 1px solid var(--border);
-    background: white;
-    padding: 8px 13px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--muted);
+.filter:hover{
+    border-color:var(--violet);
+
+    color:white;
 }
 
-.filter.active {
-    background: var(--blue);
-    color: white;
-    border-color: var(--blue);
+.filter.active{
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--violet)
+        );
+
+    color:white;
+
+    border-color:transparent;
 }
+
 
 /* =========================
-   AGENDA GRID
+   MISSIONS
 ========================= */
 
-.agenda {
-    margin-top: 18px;
+.missions{
+    display:grid;
 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:13px;
 }
 
-.card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 17px;
-    padding: 20px;
+.mission{
+    position:relative;
 
-    transition: .25s;
-    position: relative;
-    overflow: hidden;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(22,12,43,.96),
+            rgba(11,7,23,.98)
+        );
+
+    border:1px solid rgba(168,85,247,.16);
+
+    border-radius:17px;
+
+    padding:18px;
+
+    transition:.3s;
+
+    overflow:hidden;
 }
 
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 30px rgba(20,45,80,.08);
+.mission:hover{
+    transform:translateY(-5px);
+
+    border-color:
+        rgba(168,85,247,.4);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.3);
 }
 
-.card::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: var(--blue2);
+.mission::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--cyan)
+        );
 }
 
-.card.major::before {
-    background: var(--gold);
+.mission.major::before{
+    background:
+        linear-gradient(
+            90deg,
+            var(--pink),
+            var(--violet),
+            var(--cyan)
+        );
 }
 
-.card-number {
-    font-size: 11px;
-    color: var(--muted);
-    font-weight: 800;
+.mission-top{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
 }
 
-.card-date {
-    margin-top: 7px;
-    font-size: 12px;
-    color: var(--blue2);
-    font-weight: 800;
+.mission-no{
+    color:#71698a;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
 }
 
-.card h3 {
-    font-size: 15px;
-    line-height: 1.4;
-    margin-top: 9px;
-    color: var(--navy);
+.badge{
+    padding:4px 8px;
+
+    border-radius:20px;
+
+    background:
+        rgba(168,85,247,.12);
+
+    color:#c084fc;
+
+    font-size:8px;
+
+    font-weight:900;
+
+    letter-spacing:.7px;
 }
 
-.card p {
-    margin-top: 7px;
-    color: var(--muted);
-    font-size: 11px;
-    line-height: 1.5;
+.mission-date{
+    color:var(--cyan);
+
+    font-size:10px;
+
+    font-weight:800;
+
+    margin-top:10px;
 }
 
-.badge {
-    display: inline-block;
-    margin-top: 12px;
+.mission h3{
+    font-size:14px;
 
-    background: #fff4c9;
-    color: #866000;
+    line-height:1.45;
 
-    padding: 4px 8px;
-    border-radius: 20px;
+    margin-top:7px;
 
-    font-size: 9px;
-    font-weight: 800;
+    color:#f2effc;
 }
+
+.mission p{
+    color:#827a99;
+
+    font-size:10px;
+
+    margin-top:7px;
+
+    line-height:1.5;
+}
+
 
 /* =========================
    FOOTER
 ========================= */
 
-footer {
-    background: var(--navy);
-    color: white;
-    padding: 35px 20px;
-    text-align: center;
+footer{
+    padding:40px 20px;
+
+    text-align:center;
+
+    background:#05030d;
+
+    border-top:
+        1px solid rgba(168,85,247,.12);
 }
 
-footer strong {
-    font-size: 18px;
+footer strong{
+    font-size:17px;
 }
 
-footer p {
-    margin-top: 7px;
-    font-size: 11px;
-    opacity: .55;
+footer p{
+    margin-top:7px;
+
+    color:#625a76;
+
+    font-size:10px;
 }
+
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width: 850px) {
+@media(max-width:900px){
 
-    .phases {
-        grid-template-columns: repeat(2, 1fr);
+    .astronaut{
+        opacity:.3;
+
+        right:-10px;
     }
 
-    .agenda {
-        grid-template-columns: repeat(2, 1fr);
+    .orbit{
+        opacity:.4;
+
+        right:-300px;
     }
 
-    .hero-top {
-        align-items: flex-start;
+    .phases{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .missions{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
 }
 
-@media(max-width: 600px) {
+@media(max-width:600px){
 
-    .hero {
-        padding-top: 35px;
+    .hero{
+        min-height:530px;
     }
 
-    .hero-top {
-        flex-direction: column;
+    .hero-inner{
+        min-height:530px;
     }
 
-    .hero h1 {
-        margin-top: 35px;
+    .hero-content{
+        margin-top:80px;
     }
 
-    .next-event {
-        grid-template-columns: 1fr;
-        margin-top: -45px;
+    .hero h1{
+        letter-spacing:-3px;
     }
 
-    .countdown {
-        width: 100%;
+    .astronaut{
+        transform:scale(.65);
+
+        right:-50px;
+
+        top:230px;
     }
 
-    .count-box {
-        flex: 1;
+    .orbit{
+        width:400px;
+        height:400px;
+
+        right:-180px;
+        top:160px;
+    }
+
+    .next{
+        grid-template-columns:1fr;
+    }
+
+    .countdown{
+        width:100%;
+    }
+
+    .count{
+        flex:1;
+        min-width:0;
     }
 
     .phases,
-    .agenda {
-        grid-template-columns: 1fr;
+    .missions{
+        grid-template-columns:1fr;
     }
 
-    .timeline-header {
-        align-items: flex-start;
-        flex-direction: column;
+    .section-head{
+        align-items:flex-start;
+
+        flex-direction:column;
+
+        gap:8px;
+    }
+
+    .filters{
+        width:100%;
     }
 
 }
+
 </style>
 </head>
 
+
 <body>
+
 
 <!-- =========================
      HERO
@@ -491,39 +1030,100 @@ footer p {
 
 <header class="hero">
 
-    <div class="hero-inner">
+<div class="hero-inner">
 
-        <div class="hero-top">
 
-            <div class="logo-area">
+<div class="nav">
 
-                <div class="logo-placeholder">
-                    AMSO
-                </div>
+<div class="brand">
 
-                <div class="logo-text">
-                    <small>ANGKASA</small>
-                    <strong>Mathematic & Science Olympiad</strong>
-                </div>
+<div class="brand-icon">
+🚀
+</div>
 
-            </div>
+<div class="brand-text">
 
-            <div class="year">
-                AMSO 2026
-            </div>
+<small>ANGKASA</small>
 
-        </div>
+<strong>
+Mathematic & Science Olympiad
+</strong>
 
-        <h1>
-            TIMELINE<br>
-            <span>AMSO 2026</span>
-        </h1>
+</div>
 
-        <p class="hero-desc">
-            Rangkaian lengkap pelaksanaan AMSO 2026,
-        </p>
+</div>
 
-    </div>
+
+<div class="year">
+MISSION 2026
+</div>
+
+</div>
+
+
+<div class="hero-content">
+
+<div class="kicker">
+<span></span>
+AMSO SPACE MISSION
+</div>
+
+
+<h1>
+
+TIMELINE
+
+<span>
+AMSO 2026
+</span>
+
+</h1>
+
+
+<p class="hero-description">
+
+Jelajahi setiap tahapan perjalanan AMSO 2026 —
+dari misi awal Tryout hingga puncak perjalanan
+pada Babak Final dan Pengumuman Pemenang.
+
+</p>
+
+</div>
+
+
+<!-- ORBIT -->
+
+<div class="orbit"></div>
+
+
+<!-- ASTRONAUT -->
+
+<div class="astronaut">
+
+<div class="helmet">
+
+<div class="visor"></div>
+
+</div>
+
+<div class="body">
+
+<div class="control"></div>
+
+</div>
+
+<div class="arm left"></div>
+
+<div class="arm right"></div>
+
+<div class="leg left"></div>
+
+<div class="leg right"></div>
+
+</div>
+
+
+</div>
 
 </header>
 
@@ -532,72 +1132,90 @@ footer p {
 
 
 <!-- =========================
-     NEXT EVENT
+     NEXT MISSION
 ========================= -->
 
-<section class="next-event">
+<section class="next">
 
-    <div>
+<div>
 
-        <div class="next-label">
-            ● Next Event
-        </div>
+<div class="next-label">
+🚀 NEXT MISSION
+</div>
 
-        <div class="next-title" id="nextTitle">
-            Memuat agenda...
-        </div>
+<div
+class="next-title"
+id="nextTitle">
 
-        <div class="next-date" id="nextDate">
-            -
-        </div>
+Memuat...
 
-    </div>
+</div>
 
-    <div class="countdown">
+<div
+class="next-date"
+id="nextDate">
 
-        <div class="count-box">
-            <strong id="days">00</strong>
-            <span>Hari</span>
-        </div>
+-
 
-        <div class="count-box">
-            <strong id="hours">00</strong>
-            <span>Jam</span>
-        </div>
+</div>
 
-        <div class="count-box">
-            <strong id="minutes">00</strong>
-            <span>Menit</span>
-        </div>
-
-        <div class="count-box">
-            <strong id="seconds">00</strong>
-            <span>Detik</span>
-        </div>
-
-    </div>
-
-</section>
+</div>
 
 
-<!-- =========================
-     PROGRESS
-========================= -->
+<div class="countdown">
 
-<section class="progress-section">
+<div class="count">
 
-    <h2 class="section-title">
-        Progress AMSO 2026
-    </h2>
+<strong id="days">
+00
+</strong>
 
-    <div class="progress-bar">
-        <div class="progress-fill" id="progress"></div>
-    </div>
+<span>
+Hari
+</span>
 
-    <div class="progress-info">
-        <span id="progressText">0% perjalanan</span>
-        <span>12 Agustus – 15 Desember 2026</span>
-    </div>
+</div>
+
+
+<div class="count">
+
+<strong id="hours">
+00
+</strong>
+
+<span>
+Jam
+</span>
+
+</div>
+
+
+<div class="count">
+
+<strong id="minutes">
+00
+</strong>
+
+<span>
+Menit
+</span>
+
+</div>
+
+
+<div class="count">
+
+<strong id="seconds">
+00
+</strong>
+
+<span>
+Detik
+</span>
+
+</div>
+
+</div>
 
 </section>
 
@@ -606,45 +1224,114 @@ footer p {
      PHASES
 ========================= -->
 
-<section class="phase-section">
+<section class="section">
 
-    <h2 class="section-title">
-        Tahapan Utama
-    </h2>
+<div class="section-head">
 
-    <div class="phases">
+<div>
 
-        <div class="phase">
-            <div class="phase-number">01</div>
-            <h3>Tryout</h3>
-            <p>18 – 28 Agustus</p>
-        </div>
+<h2>
+🚀 Main Mission
+</h2>
 
-        <div class="phase">
-            <div class="phase-number">02</div>
-            <h3>Seleksi Sekolah</h3>
-            <p>8 – 11 September</p>
-        </div>
+<p>
+Lima tahapan utama AMSO 2026
+</p>
 
-        <div class="phase">
-            <div class="phase-number">03</div>
-            <h3>Penyisihan</h3>
-            <p>23 September</p>
-        </div>
+</div>
 
-        <div class="phase">
-            <div class="phase-number">04</div>
-            <h3>Semifinal</h3>
-            <p>6 Oktober</p>
-        </div>
+</div>
 
-        <div class="phase">
-            <div class="phase-number">05</div>
-            <h3>Final</h3>
-            <p>20 Oktober</p>
-        </div>
 
-    </div>
+<div class="phases">
+
+
+<div class="phase">
+
+<div class="phase-number">
+MISSION 01
+</div>
+
+<h3>
+Tryout
+</h3>
+
+<p>
+18 – 28 Agustus 2026
+</p>
+
+</div>
+
+
+<div class="phase">
+
+<div class="phase-number">
+MISSION 02
+</div>
+
+<h3>
+Seleksi Sekolah
+</h3>
+
+<p>
+8 – 11 September
+</p>
+
+</div>
+
+
+<div class="phase">
+
+<div class="phase-number">
+MISSION 03
+</div>
+
+<h3>
+Penyisihan
+</h3>
+
+<p>
+23 September
+</p>
+
+</div>
+
+
+<div class="phase">
+
+<div class="phase-number">
+MISSION 04
+</div>
+
+<h3>
+Semifinal
+</h3>
+
+<p>
+6 Oktober
+</p>
+
+</div>
+
+
+<div class="phase">
+
+<div class="phase-number">
+MISSION 05
+</div>
+
+<h3>
+Final
+</h3>
+
+<p>
+20 Oktober
+</p>
+
+</div>
+
+
+</div>
 
 </section>
 
@@ -653,298 +1340,364 @@ footer p {
      AGENDA
 ========================= -->
 
-<section>
-
-    <div class="timeline-header">
-
-        <h2 class="section-title">
-            Seluruh Agenda
-        </h2>
-
-        <div class="filters">
-
-            <button class="filter active" data-month="all">
-                Semua
-            </button>
-
-            <button class="filter" data-month="8">
-                Agustus
-            </button>
-
-            <button class="filter" data-month="9">
-                September
-            </button>
-
-            <button class="filter" data-month="10">
-                Oktober
-            </button>
-
-            <button class="filter" data-month="12">
-                Desember
-            </button>
-
-        </div>
-
-    </div>
+<section class="section">
 
 
-    <div class="agenda" id="agenda"></div>
+<div class="section-head">
+
+<div>
+
+<h2>
+🛰️ Mission Timeline
+</h2>
+
+<p>
+Seluruh agenda AMSO 2026
+</p>
+
+</div>
+
+
+<div class="filters">
+
+<button
+class="filter active"
+data-month="all">
+
+Semua
+
+</button>
+
+<button
+class="filter"
+data-month="8">
+
+Agustus
+
+</button>
+
+<button
+class="filter"
+data-month="9">
+
+September
+
+</button>
+
+<button
+class="filter"
+data-month="10">
+
+Oktober
+
+</button>
+
+<button
+class="filter"
+data-month="12">
+
+Desember
+
+</button>
+
+</div>
+
+</div>
+
+
+<div
+class="missions"
+id="missions">
+
+</div>
+
 
 </section>
+
 
 </main>
 
 
 <footer>
 
-    <strong>AMSO 2026</strong>
+<strong>
+AMSO 2026
+</strong>
 
-    <p>
-        Angkasa Mathematic & Science Olympiad
-    </p>
+<p>
+Angkasa Mathematic & Science Olympiad
+</p>
 
 </footer>
 
 
 <script>
 
+
 /* =========================
-   DATA AGENDA
+   DATA
 ========================= */
 
-const events = [
+const events=[
 
 {
-    no: 1,
-    date: "2026-08-12",
-    display: "Rabu, 12 Agustus 2026",
-    title: "Pengiriman Surat Pemberitahuan Tryout AMSO 2026",
-    month: 8
+no:1,
+date:"2026-08-12",
+display:"Rabu, 12 Agustus 2026",
+title:"Pengiriman Surat Pemberitahuan Tryout AMSO 2026",
+month:8
 },
 
 {
-    no: 2,
-    date: "2026-08-18",
-    display: "18 – 28 Agustus 2026",
-    title: "Pelaksanaan Tryout di Sekolah Masing-masing & Batas Akhir Pengumpulan Hasil Tryout",
-    month: 8
+no:2,
+date:"2026-08-18",
+display:"18 – 28 Agustus 2026",
+title:"Pelaksanaan Tryout di Sekolah Masing-masing & Batas Akhir Pengumpulan Hasil Tryout AMSO 2026",
+month:8
 },
 
 {
-    no: 3,
-    date: "2026-08-31",
-    display: "Senin, 31 Agustus 2026",
-    title: "Pengiriman Buku Panduan AMSO 2026 ke Yasarini Jajaran",
-    month: 8
+no:3,
+date:"2026-08-31",
+display:"Senin, 31 Agustus 2026",
+title:"Pengiriman Buku Panduan AMSO 2026 ke Yasarini Jajaran",
+month:8
 },
 
 {
-    no: 4,
-    date: "2026-09-07",
-    display: "Senin, 7 September 2026",
-    title: "Bimbingan Teknis AMSO 2026",
-    month: 9
+no:4,
+date:"2026-09-07",
+display:"Senin, 7 September 2026",
+title:"Bimbingan Teknis AMSO 2026",
+month:9
 },
 
 {
-    no: 5,
-    date: "2026-09-08",
-    display: "8 – 11 September 2026",
-    title: "Pelaksanaan Babak Seleksi Sekolah",
-    month: 9,
-    major: true,
-    badge: "SELEKSI"
+no:5,
+date:"2026-09-08",
+display:"8 – 11 September 2026",
+title:"Pelaksanaan Babak Seleksi Sekolah",
+month:9,
+major:true,
+badge:"SELEKSI"
 },
 
 {
-    no: 6,
-    date: "2026-09-11",
-    display: "Jum’at, 11 September 2026",
-    title: "Batas Akhir Pengiriman Hasil Babak Seleksi Sekolah",
-    month: 9
+no:6,
+date:"2026-09-11",
+display:"Jum’at, 11 September 2026",
+title:"Batas Akhir Pengiriman Hasil Babak Seleksi Sekolah",
+month:9
 },
 
 {
-    no: 7,
-    date: "2026-09-15",
-    display: "Selasa, 15 September 2026",
-    title: "Pengiriman Nomor Peserta yang Lolos ke Babak Penyisihan",
-    month: 9
+no:7,
+date:"2026-09-15",
+display:"Selasa, 15 September 2026",
+title:"Pengiriman Nomor Peserta yang Lolos ke Babak Penyisihan",
+month:9
 },
 
 {
-    no: 8,
-    date: "2026-09-22",
-    display: "Selasa, 22 September 2026",
-    title: "Uji Coba Link Soal Babak Penyisihan",
-    month: 9
+no:8,
+date:"2026-09-22",
+display:"Selasa, 22 September 2026",
+title:"Uji Coba Link Soal Babak Penyisihan",
+month:9
 },
 
 {
-    no: 9,
-    date: "2026-09-23",
-    display: "Rabu, 23 September 2026",
-    title: "Pelaksanaan Babak Penyisihan",
-    month: 9,
-    major: true,
-    badge: "PENYISIHAN"
+no:9,
+date:"2026-09-23",
+display:"Rabu, 23 September 2026",
+title:"Pelaksanaan Babak Penyisihan",
+month:9,
+major:true,
+badge:"PENYISIHAN"
 },
 
 {
-    no: 10,
-    date: "2026-09-24",
-    display: "Kamis, 24 September 2026",
-    title: "Batas Akhir Pengiriman Berita Acara, Absensi, Pakta Integritas Kepala Sekolah dan Pengawas",
-    month: 9
+no:10,
+date:"2026-09-24",
+display:"Kamis, 24 September 2026",
+title:"Batas Akhir Pengiriman Berita Acara, Absensi Babak Penyisihan, Pakta Integritas Kepala Sekolah dan Pengawas",
+month:9
 },
 
 {
-    no: 11,
-    date: "2026-09-28",
-    display: "Senin, 28 September 2026",
-    title: "Pengumuman Peserta Lolos ke Babak Semifinal",
-    month: 9
+no:11,
+date:"2026-09-28",
+display:"Senin, 28 September 2026",
+title:"Pengumuman Peserta Lolos ke Babak Semifinal",
+month:9
 },
 
 {
-    no: 12,
-    date: "2026-10-05",
-    display: "Senin, 5 Oktober 2026",
-    title: "Uji Coba Link Babak Semifinal",
-    month: 10
+no:12,
+date:"2026-10-05",
+display:"Senin, 5 Oktober 2026",
+title:"Uji Coba Link Babak Semifinal",
+month:10
 },
 
 {
-    no: 13,
-    date: "2026-10-06",
-    display: "Selasa, 6 Oktober 2026",
-    title: "Pelaksanaan Babak Semifinal",
-    month: 10,
-    major: true,
-    badge: "SEMIFINAL"
+no:13,
+date:"2026-10-06",
+display:"Selasa, 6 Oktober 2026",
+title:"Pelaksanaan Babak Semifinal",
+month:10,
+major:true,
+badge:"SEMIFINAL"
 },
 
 {
-    no: 14,
-    date: "2026-10-07",
-    display: "Rabu, 7 Oktober 2026",
-    title: "Batas Akhir Pengiriman Berita Acara & Absensi Babak Semifinal",
-    month: 10
+no:14,
+date:"2026-10-07",
+display:"Rabu, 7 Oktober 2026",
+title:"Batas Akhir Pengiriman Berita Acara & Absensi Babak Semifinal",
+month:10
 },
 
 {
-    no: 15,
-    date: "2026-10-12",
-    display: "Senin, 12 Oktober 2026",
-    title: "Pengumuman Peserta Lolos ke Babak Final dan Detail Babak Final",
-    month: 10
+no:15,
+date:"2026-10-12",
+display:"Senin, 12 Oktober 2026",
+title:"Pengumuman Peserta Lolos ke Babak Final dan Detail Babak Final",
+month:10
 },
 
 {
-    no: 16,
-    date: "2026-10-14",
-    display: "Rabu, 14 Oktober 2026",
-    title: "Bimtek Babak Final",
-    month: 10
+no:16,
+date:"2026-10-14",
+display:"Rabu, 14 Oktober 2026",
+title:"Bimtek Babak Final",
+month:10
 },
 
 {
-    no: 17,
-    date: "2026-10-16",
-    display: "Jum’at, 16 Oktober 2026",
-    title: "Batas Akhir Pengiriman Foto dan Nomor Rekening Peserta Babak Final",
-    month: 10
+no:17,
+date:"2026-10-16",
+display:"Jum’at, 16 Oktober 2026",
+title:"Batas Akhir Pengiriman Foto dan Nomor Rekening Peserta Babak Final",
+month:10
 },
 
 {
-    no: 18,
-    date: "2026-10-19",
-    display: "Senin, 19 Oktober 2026",
-    title: "Gladi Jaringan dan Soal Babak Final AMSO",
-    month: 10
+no:18,
+date:"2026-10-19",
+display:"Senin, 19 Oktober 2026",
+title:"Gladi Jaringan dan Soal Babak Final AMSO",
+month:10
 },
 
 {
-    no: 19,
-    date: "2026-10-20",
-    display: "Selasa, 20 Oktober 2026",
-    title: "Pelaksanaan Babak Final AMSO",
-    month: 10,
-    major: true,
-    badge: "FINAL"
+no:19,
+date:"2026-10-20",
+display:"Selasa, 20 Oktober 2026",
+title:"Pelaksanaan Babak Final AMSO",
+month:10,
+major:true,
+badge:"FINAL"
 },
 
 {
-    no: 20,
-    date: "2026-10-21",
-    display: "Rabu, 21 Oktober 2026",
-    title: "Batas Akhir Pengiriman Berita Acara & Absensi Babak Final",
-    month: 10
+no:20,
+date:"2026-10-21",
+display:"Rabu, 21 Oktober 2026",
+title:"Batas Akhir Pengiriman Berita Acara & Absensi Babak Final",
+month:10
 },
 
 {
-    no: 21,
-    date: "2026-12-15",
-    display: "Selasa, 15 Desember 2026",
-    title: "Pengumuman Pemenang AMSO 2026",
-    month: 12,
-    major: true,
-    badge: "GRAND FINALE"
+no:21,
+date:"2026-12-15",
+display:"Selasa, 15 Desember 2026",
+title:"Pengumuman Pemenang AMSO 2026",
+month:12,
+major:true,
+badge:"GRAND FINALE"
 }
 
 ];
 
 
 /* =========================
-   RENDER AGENDA
+   RENDER
 ========================= */
 
-const agenda = document.getElementById("agenda");
+const missions=
+document.getElementById("missions");
 
-function renderEvents(month = "all") {
 
-    agenda.innerHTML = "";
+function renderEvents(month="all"){
 
-    const filtered =
-        month === "all"
-        ? events
-        : events.filter(event => event.month == month);
+missions.innerHTML="";
 
-    filtered.forEach(event => {
 
-        const card = document.createElement("div");
+const filtered=
+month==="all"
+?events
+:events.filter(
+event=>event.month==month
+);
 
-        card.className =
-            "card" +
-            (event.major ? " major" : "");
 
-        card.innerHTML = `
+filtered.forEach(event=>{
 
-            <div class="card-number">
-                AGENDA ${String(event.no).padStart(2,"0")}
-            </div>
+const card=
+document.createElement("div");
 
-            <div class="card-date">
-                ${event.display}
-            </div>
 
-            <h3>
-                ${event.title}
-            </h3>
+card.className=
+"mission"+
+(event.major?" major":"");
 
-            ${
-                event.badge
-                ? `<div class="badge">${event.badge}</div>`
-                : ""
-            }
 
-        `;
+card.innerHTML=`
 
-        agenda.appendChild(card);
+<div class="mission-top">
 
-    });
+<div class="mission-no">
+
+MISSION
+${String(event.no).padStart(2,"0")}
+
+</div>
+
+${
+event.badge
+?
+`<div class="badge">
+${event.badge}
+</div>`
+:""
+}
+
+</div>
+
+
+<div class="mission-date">
+
+${event.display}
+
+</div>
+
+
+<h3>
+
+${event.title}
+
+</h3>
+
+`;
+
+
+missions.appendChild(card);
+
+});
 
 }
+
 
 renderEvents();
 
@@ -953,24 +1706,29 @@ renderEvents();
    FILTER
 ========================= */
 
-document.querySelectorAll(".filter")
-.forEach(button => {
+document
+.querySelectorAll(".filter")
+.forEach(button=>{
 
-    button.addEventListener("click", () => {
+button.addEventListener(
+"click",
+()=>{
 
-        document
-            .querySelectorAll(".filter")
-            .forEach(btn =>
-                btn.classList.remove("active")
-            );
+document
+.querySelectorAll(".filter")
+.forEach(
+btn=>btn.classList.remove("active")
+);
 
-        button.classList.add("active");
 
-        renderEvents(
-            button.dataset.month
-        );
+button.classList.add("active");
 
-    });
+
+renderEvents(
+button.dataset.month
+);
+
+});
 
 });
 
@@ -979,114 +1737,109 @@ document.querySelectorAll(".filter")
    NEXT EVENT
 ========================= */
 
-function updateNextEvent() {
+function updateNext(){
 
-    const now = new Date();
+const now=new Date();
 
-    const next =
-        events.find(event =>
-            new Date(event.date + "T23:59:59") >= now
-        );
 
-    if (!next) {
+const next=
+events.find(
+event=>
+new Date(
+event.date+"T23:59:59"
+)>=now
+);
 
-        document.getElementById("nextTitle")
-            .textContent =
-            "AMSO 2026 telah selesai";
 
-        return;
+if(!next){
 
-    }
+document.getElementById("nextTitle")
+.textContent=
+"AMSO 2026 selesai";
 
-    document.getElementById("nextTitle")
-        .textContent = next.title;
-
-    document.getElementById("nextDate")
-        .textContent = next.display;
-
-    const target =
-        new Date(next.date + "T00:00:00");
-
-    const diff =
-        target - now;
-
-    const days =
-        Math.floor(diff / (1000 * 60 * 60 * 24));
-
-    const hours =
-        Math.floor(
-            diff / (1000 * 60 * 60)
-        ) % 24;
-
-    const minutes =
-        Math.floor(
-            diff / (1000 * 60)
-        ) % 60;
-
-    const seconds =
-        Math.floor(
-            diff / 1000
-        ) % 60;
-
-    document.getElementById("days")
-        .textContent =
-        String(Math.max(days,0)).padStart(2,"0");
-
-    document.getElementById("hours")
-        .textContent =
-        String(Math.max(hours,0)).padStart(2,"0");
-
-    document.getElementById("minutes")
-        .textContent =
-        String(Math.max(minutes,0)).padStart(2,"0");
-
-    document.getElementById("seconds")
-        .textContent =
-        String(Math.max(seconds,0)).padStart(2,"0");
+return;
 
 }
 
-setInterval(updateNextEvent,1000);
-updateNextEvent();
+
+document.getElementById("nextTitle")
+.textContent=
+next.title;
 
 
-/* =========================
-   PROGRESS AMSO
-========================= */
+document.getElementById("nextDate")
+.textContent=
+next.display;
 
-function updateProgress() {
 
-    const start =
-        new Date("2026-08-12T00:00:00");
+const target=
+new Date(
+next.date+"T00:00:00"
+);
 
-    const end =
-        new Date("2026-12-15T23:59:59");
 
-    const now =
-        new Date();
+const diff=
+target-now;
 
-    let percentage =
-        ((now - start) /
-        (end - start)) * 100;
 
-    percentage =
-        Math.max(
-            0,
-            Math.min(100, percentage)
-        );
+const days=
+Math.floor(
+diff/(1000*60*60*24)
+);
 
-    document.getElementById("progress")
-        .style.width =
-        percentage + "%";
 
-    document.getElementById("progressText")
-        .textContent =
-        Math.round(percentage) +
-        "% perjalanan";
+const hours=
+Math.floor(
+diff/(1000*60*60)
+)%24;
+
+
+const minutes=
+Math.floor(
+diff/(1000*60)
+)%60;
+
+
+const seconds=
+Math.floor(
+diff/1000
+)%60;
+
+
+document.getElementById("days")
+.textContent=
+String(
+Math.max(days,0)
+).padStart(2,"0");
+
+
+document.getElementById("hours")
+.textContent=
+String(
+Math.max(hours,0)
+).padStart(2,"0");
+
+
+document.getElementById("minutes")
+.textContent=
+String(
+Math.max(minutes,0)
+).padStart(2,"0");
+
+
+document.getElementById("seconds")
+.textContent=
+String(
+Math.max(seconds,0)
+).padStart(2,"0");
 
 }
 
-updateProgress();
+
+setInterval(updateNext,1000);
+
+updateNext();
+
 
 </script>
 
